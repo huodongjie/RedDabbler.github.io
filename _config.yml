@@ -5,9 +5,9 @@
 # Site
 title: 迷途者
 subtitle:
-description:
-author: redDabbler
-language: zh-hans
+description: where maybe or consider you will be at  ten year later ?
+author: RedDabbler
+language: zh-Hans
 timezone:
 
 # URL
@@ -16,6 +16,7 @@ url: http://yoursite.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
+  lang: en
 
 # Directory
 source_dir: source
@@ -69,3 +70,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
+  repo: https://github.com/RedDabbler/RedDabbler.github.io.git
+  branch: master
