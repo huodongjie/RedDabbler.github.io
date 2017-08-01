@@ -1,7 +1,7 @@
 ---
 title: Hello World
 date: 2016-05
-categories: 
+categories:
      - 测试
      - test
 tags: [Hello]
