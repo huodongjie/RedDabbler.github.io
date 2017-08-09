@@ -1,6 +1,7 @@
 ---
 title: change没有被合并
-date: 2017-08-09 20:02:00
+date: 2017-06-09 20:02:00
+permalink: Source code Guava Joiner
 tags: git
 categories: git
 ---

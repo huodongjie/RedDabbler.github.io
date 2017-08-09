@@ -1,6 +1,7 @@
 ---
 title: 源码Guava之Joiner
 date: 2017-08-04 20:20:49
+permalink: Source-code-Guava-Joiner
 tags: [Guava]
 categories:
 - 源码
@@ -10,6 +11,7 @@ Joiner 可用于将分隔符 和 集合 拼接
 
 ### Joiner的使用
 
+#### 集合元素拼接
 - 用字符串拼接，返回字符串
 ``` java
 //1#2#3#4
