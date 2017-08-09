@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2016-05
+date: 2016-05-05
 categories:
      - 测试
      - test
