@@ -7,8 +7,11 @@ categories:
 - 源码
 - Guava
 ---
-Joiner 可用于将分隔符 和 集合 拼接
+Joiner 可用于将分隔符 和 集合 拼接，不用写大段类似的循环逻辑，极大的简洁了代码。为实现Appendable的接口的对象和实现Iterable接口的对象提供了用分隔符拼接的解决方案。
 
+<!--more-->
+
+[toc]
 ### Joiner的使用
 
 #### 集合元素拼接
@@ -33,6 +36,11 @@ Joiner.on('#').appendTo(new StringBuilder(),Lists.newArrayList( obj1，obj2));
 ```java
 Joiner.on('#').appendTo(Iterable Iterable)
 ```
+- 集合元素null处理
+```java
+Joiner.on('-').skipNulls().join(1, null, 3);//1-3
+Joiner.on('-').useForNull("None").join(1, null, 3);//1-None-3
+```
 #### Map 的key，value拼接
 ```java
 //如 map('"1,"2"),('"3,"2")  ==> 1=2#3=2
@@ -40,6 +48,8 @@ Joiner.on('#').withKeyValueSeparator('=').appendTo(Map map);
 
 ```
 ### 源码解析
+
+Joiner的构造器是私有的，调用静态方法on，才能获取Joiner对象，通过join或者appendTo的实例方法来连接集合元素。MapJoiner与其类似。
 
 - 最底层的实现
 ```java
@@ -108,14 +118,14 @@ Joiner对这种null的实现方案返回一个新的Joiner子类，子类重写�
     };
   }
   ```
-  skipNulls返回的Joiner子类，除了重写要实现的appendTo方法外，还重写了子类不支持的方法, skipNulls 和userForNull都是处理null的方案，不存在两种方法同时存在的情况，直接覆盖方法。
+  skipNulls返回的Joiner子类，除了重写要实现的appendTo方法外，还重写了**子类不支持的方法**, skipNulls 和userForNull都是处理null的方案，不存在两种方法同时存在的情况，直接覆盖方法。
   useForNull 方法类似，具体可以看下源码。
 
   - MapJoiner
   Joiner有个public的静态内部类MapJoiner, 专门处理键值对的情况，
   下面这方法是它最底层的方法，与Joiner类似
 ```java
-@Beta
+   @Beta
    public <A extends Appendable> A appendTo(A appendable, Iterator<? extends Entry<?, ?>> parts)
        throws IOException {
      checkNotNull(appendable);
@@ -134,5 +144,6 @@ Joiner对这种null的实现方案返回一个新的Joiner子类，子类重写�
      }
      return appendable;
    }
-
 ```
+
+[参考文档](http://www.importnew.com/15221.html)
